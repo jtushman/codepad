@@ -1,0 +1,72 @@
+<head>
+    <title>Codepad</title>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+</head>
+
+<body>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            {{> navbar}}
+        </div>
+    </div>
+</div>
+<div class="container">
+    {{> codepad}}
+</div>
+</body>
+
+<template name="navbar">
+    <a class="brand" href="#">Codepad</a>
+    <ul class="nav">
+        <li><a href="https://github.com/srackham/leaderboard-coffeescript">Github</a></li>
+        <li><a href="http://meteor.com/examples/leaderboard">About</a></li>
+    </ul>
+</template>
+
+<template name="codepad">
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="span4">
+            {{> pages}}
+        </div>
+        <div class="span8">
+            {{> page}}
+        </div>
+    </div>
+
+</template>
+
+<template name="pages">
+    <h3>Pages</h3>
+
+    <div id='pages'>
+        <ul class="nav nav-pills nav-stacked">
+        {{#each pages}}
+          {{> page_list_item}}
+        {{/each}}
+        </ul>
+    </div>
+</template>
+
+<template name="page_list_item">
+    <li class='{{active}}'><a href="#">{{name}}</a></li>
+</template>
+
+<template name="page">
+    {{#if any_page_selected}}
+        {{#with page}}
+          <h2>{{name}}</h2>
+          <textarea id="page_content" class="input-xlarge" style="width: 100%;">{{content}}</textarea>
+          <div class="form-actions">
+              <input type="button" class="btn btn-primary" value="Save" />
+              <button class="btn">Cancel</button>
+          </div>
+
+       {{/with}}
+    {{/if}}
+</template>
+
+
